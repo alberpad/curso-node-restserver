@@ -1,6 +1,8 @@
 require('./config/config');
+//require('./routes/usuario');
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
@@ -8,35 +10,21 @@ app.use(express.urlencoded({ extended: false }));
 // parse application/json
 app.use(express.json());
 
+app.use(require('./routes/usuario'));
+
 app.get('/', function(req: any, res: any) {
   res.json('Hola Mundo');
 });
 
-app.get('/usuario', function(req: any, res: any) {
-  res.json('get usuario');
-});
-app.post('/usuario', function(req: any, res: any) {
-  let body = req.body;
-  if (body.nombre == undefined) {
-    res.status(400).json({
-      ok: false,
-      mensaje: 'El nombre es necesario'
-    });
-  } else {
-    res.json({
-      persona: body
-    });
+mongoose.connect(
+  process.env.MIURLDB,
+  (err: any, res: any) => {
+    if (err) {
+      console.log('No se pudo conectar con la base de datos', err);
+    }
+    console.log('Base de datos ONLINE');
   }
-});
-app.put('/usuario/:id', function(req: any, res: any) {
-  let id = req.params.id;
-  res.json({
-    id
-  });
-});
-app.delete('/usuario', function(req: any, res: any) {
-  res.json('delete usuario');
-});
+);
 
 app.listen(process.env.PORT, () => {
   console.log('Escuchando en el puerto 3000...');
