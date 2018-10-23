@@ -9,7 +9,7 @@ let urlDB;
 if (process.env.NODE_ENV === 'dev') {
   urlDB = 'mongodb://localhost:27017/cursonode-restserver';
 } else {
-  urlDB = 'mongodb://cursonode-user:curso1234@ds139883.mlab.com:39883/cursonode-restserver';
+  urlDB = process.env.MONGO_URI;
 }
 // Creamos una variable de enviorement MIURLDB
 process.env.MIURLDB = urlDB;
