@@ -5,12 +5,11 @@ var server;
     const express = require('express');
     const app = express();
     const mongoose = require('mongoose');
+    const path = require('path');
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
+    app.use(express.static('public'));
     app.use(require('./routes/index'));
-    app.get('/', function (req, res) {
-        res.json('Hola Mundo');
-    });
     mongoose.connect(process.env.MIURLDB, (err) => {
         if (err) {
             console.log('No se pudo conectar con la base de datos', err);

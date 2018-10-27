@@ -19,3 +19,7 @@ if (process.env.NODE_ENV === 'dev') {
 }
 // Creamos una variable de enviorement MIURLDB
 process.env.MIURLDB = urlDB;
+
+// Google client id
+process.env.CLIENT_ID =
+  process.env.CLIENT_ID || '789858548935-mh6bhth29599lpq8pmfq5e5p0lpnurk2.apps.googleusercontent.com';

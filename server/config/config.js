@@ -11,4 +11,6 @@ else {
     urlDB = process.env.MONGO_URI;
 }
 process.env.MIURLDB = urlDB;
+process.env.CLIENT_ID =
+    process.env.CLIENT_ID || '789858548935-mh6bhth29599lpq8pmfq5e5p0lpnurk2.apps.googleusercontent.com';
 //# sourceMappingURL=config.js.map
